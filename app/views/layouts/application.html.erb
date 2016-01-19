@@ -6,7 +6,10 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+  <h2>
+    <%= link_to 'Authors', authors_path %>
+    <%= link_to 'Posts', posts_path %>
+  </h2>
 <%= yield %>
 
 </body>
