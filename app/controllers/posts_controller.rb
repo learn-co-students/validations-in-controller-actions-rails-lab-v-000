@@ -6,10 +6,20 @@ class PostsController < ApplicationController
   end
 
   def update
+    set_post
+    @post.update(params.permit(:title, :description))
+    if @post.valid?
+      @post.save
+      redirect_to post_path(@post)
+    else
+      render :edit
+    end
   end
 
   private
 
-  def post_params
+  def set_post
+    @post = Post.find(params[:id])
   end
+
 end
