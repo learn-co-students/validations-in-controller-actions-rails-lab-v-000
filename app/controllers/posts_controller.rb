@@ -6,6 +6,16 @@ class PostsController < ApplicationController
   end
 
   def update
+  	#binding.pry
+  	@post = Post.find(params[:id])
+  	@post.attributes= ({title: params[:title], category: params[:category], content: params[:content]})
+  	if @post.valid?
+  		@post.save
+  		redirect_to post_path(@post)
+  	else
+  		render :edit
+  	end
+
   end
 
   private
