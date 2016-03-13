@@ -8,9 +8,14 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post.update(post_params)
+  
+    #@post = set_post!
 
-    redirect_to post_path(@post)
+    if !@post.update(post_params)
+      render :edit
+    else
+      redirect_to post_path(@post)
+    end
   end
 
   private
