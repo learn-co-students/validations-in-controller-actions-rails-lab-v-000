@@ -18,9 +18,12 @@ class PostsController < ApplicationController
   end
 
   def update
-    binding.pry
+    @post.update(post_params)
+    # @post.title = params[:title]
+    # @post.category = params[:category]
+    # @post.content = params[:content]
     if @post.valid?
-      @post.update(post_params)
+      @post.save
       redirect_to post_path(@post)
     else
       render :edit
