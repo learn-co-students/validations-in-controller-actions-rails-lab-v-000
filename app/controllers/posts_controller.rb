@@ -23,7 +23,7 @@ class PostsController < ApplicationController
     # @post.category = params[:category]
     # @post.content = params[:content]
     if @post.valid?
-      @post.save
+      # @post.save
       redirect_to post_path(@post)
     else
       render :edit
