@@ -9,6 +9,9 @@ class PostsController < ApplicationController
   end
 
   def update
+    # can also just do
+    # if @post.update(post_params)
+      
     @post.attributes=(post_params)
       if @post.valid?
         @post.save
