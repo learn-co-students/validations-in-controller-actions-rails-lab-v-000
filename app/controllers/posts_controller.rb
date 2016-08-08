@@ -1,16 +1,25 @@
+require 'pry'
+
 class PostsController < ApplicationController
   before_action :set_post!, only: [:show, :edit, :update]
 
   def show
+     set_post!
   end
 
   def edit
+    set_post!
   end
 
   def update
-    @post.update(post_params)
-
-    redirect_to post_path(@post)
+    set_post!
+    @article.update(post_params)
+    if @article.valid?
+      @article.save
+      redirect_to post_path(@article)
+    else
+      render :edit 
+    end
   end
 
   private
@@ -20,6 +29,6 @@ class PostsController < ApplicationController
   end
 
   def set_post!
-    @post = Post.find(params[:id])
+    @article = Post.find(params[:id])
   end
 end
