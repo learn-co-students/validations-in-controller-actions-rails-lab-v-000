@@ -13,10 +13,8 @@ class PostsController < ApplicationController
 
   def update
     set_post!
-    @article.update(post_params)
-    if @article.valid?
-      @article.save
-      redirect_to post_path(@article)
+    if  @post.update(post_params)
+      redirect_to post_path(@post)
     else
       render :edit 
     end
@@ -29,6 +27,6 @@ class PostsController < ApplicationController
   end
 
   def set_post!
-    @article = Post.find(params[:id])
+    @post = Post.find(params[:id])
   end
 end
