@@ -8,9 +8,15 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post.update(post_params)
-
-    redirect_to post_path(@post)
+    @article.category = params[:category]
+    @article.content = params[:content]
+    @article.title = params[:title]
+    if @article.valid?
+      @article.update(post_params)
+      redirect_to post_path(@article)
+    else
+      render :edit
+    end
   end
 
   private
@@ -20,6 +26,6 @@ class PostsController < ApplicationController
   end
 
   def set_post!
-    @post = Post.find(params[:id])
+    @article = Post.find(params[:id])
   end
 end
