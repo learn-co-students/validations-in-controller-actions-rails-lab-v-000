@@ -8,9 +8,15 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post.update(post_params)
+    @post = Post.find(params[:id])
 
-    redirect_to post_path(@post)
+    if @post.valid?
+      @post.update(post_params)
+      redirect_to post_path(@post)
+    else
+      redirect_to edit_post(@post)
+    end
+
   end
 
   private
