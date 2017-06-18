@@ -12,6 +12,7 @@ class AuthorsController < ApplicationController
     if @author.save
         redirect_to author_path(@author)
       else
+        flash[:errors]=@author.errors.full_messages
         render :new
       end
     end
