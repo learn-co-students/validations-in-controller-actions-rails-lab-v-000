@@ -16,6 +16,16 @@ class PostsController < ApplicationController
     end
   end
 
+  # better code from solution, retrieved after tests passing for future reference
+  # just use inherent validation in update to check for validity
+  # def update
+  #   if @post.update(post_params)
+  #     redirect_to post_path(@post)
+  #   else
+  #     render :edit
+  #   end
+  # end
+
   private
 
   def post_params
