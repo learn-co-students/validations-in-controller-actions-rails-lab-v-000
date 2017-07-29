@@ -37,4 +37,5 @@ To complete this lab, you will need to:
 1. Change `AuthorsController#create` to re-render the form if the new author is invalid.
 1. Change `PostsController#update` to re-render the form if the updated post is invalid.
 
-<p data-visibility='hidden'>View <a href='https://learn.co/lessons/validations-in-controller-actions-rails-lab' title='Validations In Controller Actions Lab'>Validations In Controller Actions Lab</a> on Learn.co and start learning to code for free.</p>
+<p data-visibility='hidden'>View <a href='https://learn.co/lessons/validations-in-controller-actions-rails-lab' title='Validations In Controller
+ Actions Lab'>Validations In Controller Actions Lab</a> on Learn.co and start learning to code for free.</p>
