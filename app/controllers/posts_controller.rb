@@ -8,9 +8,11 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post.update(post_params)
-
-    redirect_to post_path(@post)
+    if @post.update(post_params) # changes to attributes of @post instance will only be saved to DB if valid
+      redirect_to post_path(@post) # redirect to show page to display post just edited (different @post instance variable is used in #show action when re-retrieving instance)
+    else # otherwise, the @post instance is invalid and populated with errors, so
+      render :edit # hold onto the same @post instance to display its errors in the re-rendered edit form
+    end
   end
 
   private
