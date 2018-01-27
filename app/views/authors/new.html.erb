@@ -1,5 +1,17 @@
 <h2>Create an Author</h2>
 <%= form_tag authors_path, method: "post" do %>
+  <% if @author.errors.any? %>
+    <div class="error_explanation">
+      <h2>
+      <%= pluaralize(@author.errors.count, 'error') %> prohibited the author from being saved</h2>
+      <ul>
+        <% @author.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <div class="field">
     <%= label_tag "name", "Name" %>
     <%= text_field_tag "name" %>
