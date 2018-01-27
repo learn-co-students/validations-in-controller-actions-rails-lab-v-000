@@ -8,9 +8,13 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post.update(post_params)
-
-    redirect_to post_path(@post)
+    if @post.update(post_params)
+      #if returns "true" because it is valid and saves to the db
+      redirect_to post_path(@post)
+    else
+      #if returns "false" because it is invalid
+      render :edit
+    end
   end
 
   private
