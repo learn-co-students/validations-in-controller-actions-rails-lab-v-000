@@ -8,8 +8,12 @@ class AuthorsController < ApplicationController
 
   def create
     @author = Author.create!(author_params)
-
+  if @author.valid?
     redirect_to author_path(@author)
+  else
+    errors.add(:name, "Name can't be blank, Email has already been taken")
+    render :new
+  end
   end
 
   private
