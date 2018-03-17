@@ -7,9 +7,12 @@ class AuthorsController < ApplicationController
   end
 
   def create
-    @author = Author.create!(author_params)
-
-    redirect_to author_path(@author)
+    begin
+      @author = Author.create!(author_params)
+      redirect_to author_path(@author)
+    rescue ActiveRecord::RecordInvalid 
+      render :new
+    end
   end
 
   private
