@@ -7,10 +7,15 @@ class PostsController < ApplicationController
   def edit
   end
 
-  def update
-    @post.update(post_params)
+  def update #error says it should have gone to post_path and it went to the edit form.
+  #  @post= Post.find(params[:id])
+      #not the right thing because it means that its valid
+  if @post.update(post_params)
 
     redirect_to post_path(@post)
+  else
+    render :edit
+  end
   end
 
   private
