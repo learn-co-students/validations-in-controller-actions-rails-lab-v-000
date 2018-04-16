@@ -11,6 +11,8 @@ class PostsController < ApplicationController
     @post.update(post_params)
 
     redirect_to post_path(@post)
+
+    # Change PostsController#update to re-render the form if the updated post is invalid.
   end
 
   private
