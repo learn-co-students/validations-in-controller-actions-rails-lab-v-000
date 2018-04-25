@@ -10,8 +10,7 @@ class PostsController < ApplicationController
   def update
 
     if @post.update(post_params)
-      @post.update(post_params)
-
+      # @post.update(post_params)   ### Don't need to restate this
       redirect_to post_path(@post)
     else
       render :edit 
