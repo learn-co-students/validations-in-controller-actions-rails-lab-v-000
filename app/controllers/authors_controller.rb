@@ -7,6 +7,7 @@ class AuthorsController < ApplicationController
   end
 
   def create
+    # if author is validate save it to the database else pull up the new form
     @author = Author.new(author_params)
     if @author.valid?
       @author.save

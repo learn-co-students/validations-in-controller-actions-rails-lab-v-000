@@ -8,6 +8,8 @@ class PostsController < ApplicationController
   end
 
   def update
+    #if post update is valide redirect to the posts show page else
+    #pull up the edit page
     if @post.update(post_params)
       redirect_to post_path(@post)
     else
