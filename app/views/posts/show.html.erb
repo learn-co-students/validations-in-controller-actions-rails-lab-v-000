@@ -1,3 +1,8 @@
+<% if !@post.errors.empty? %>
+<%= @post.errors[:title] %>
+<%= @post.errors[:content] %>
+<% end %>
+
 <h2><%= @post.title %></h2>
 <%= link_to "edit", edit_post_path(@post) %>
 <p>A <%= @post.category %> post.</p>
