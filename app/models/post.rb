@@ -1,4 +1,4 @@
 class Post < ActiveRecord::Base
-  validations :title, presence true
-  # validations :content
+  validates :title, presence true
+  validates :content, inclusion: {in %w(Non-Fiction Fiction) }
 end

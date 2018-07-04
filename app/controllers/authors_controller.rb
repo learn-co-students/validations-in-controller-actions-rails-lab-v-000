@@ -4,6 +4,11 @@ class AuthorsController < ApplicationController
   end
 
   def new
+    if author.valid?
+        @author.save
+    else
+
+    render new
   end
 
   def create
