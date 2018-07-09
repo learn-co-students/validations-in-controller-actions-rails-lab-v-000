@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
+    #@post = Post.find(params[:id])
   end
 
   def update
@@ -15,9 +15,9 @@ class PostsController < ApplicationController
       redirect_to post_path(@post)
     else
       flash[:error] = @post.errors.full_messages
-      @post1 = Post.find(params[:id])
-      binding.pry
-      render edit_post_path(@post1)
+      #@post1 = Post.find(params[:id])
+      #binding.pry
+      render :edit
     end
   end
 
