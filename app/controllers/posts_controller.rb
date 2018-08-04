@@ -12,7 +12,7 @@ class PostsController < ApplicationController
 
        redirect_to post_path(@post)
      else
-      render :edit  
+      render :edit    # simply send them back to the edit page... OF what they submited didnt work.
    end
   end
 
