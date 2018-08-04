@@ -8,15 +8,19 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post.update(post_params)
+     if @post.update(post_params) 
 
-    redirect_to post_path(@post)
+       redirect_to post_path(@post)
+     else
+      render :edit    # simply send them back to the edit page... OF what they submited didnt work.
+   end
   end
+
 
   private
 
   def post_params
-    params.permit(:category, :content, :title)
+    params.permit(:title, :category, :content)
   end
 
   def set_post!
