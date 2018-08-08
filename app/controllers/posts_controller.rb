@@ -1,3 +1,4 @@
+require 'pry'
 class PostsController < ApplicationController
   before_action :set_post!, only: [:show, :edit, :update]
 
@@ -9,8 +10,7 @@ class PostsController < ApplicationController
   end
 
   def update
-    if @post.valid?
-      @post.update(post_params)
+    if @post.update(post_params)
     redirect_to post_path(@post)
   else
     render :edit
