@@ -1,13 +1,12 @@
 <h2>Create an Author</h2>
-<%# binding.pry %>
-<%= form_for @author do |f|%>
+<%= form_tag authors_path, method: "post" do %>
   <div class="field">
-    <%= f.label :name%>
-    <%= f.text_field :name %>
+    <%= label_tag "name", "Name" %>
+    <%= text_field_tag "name" %>
   </div>
   <div class="field">
-    <%= f.label :email %>
-    <%= f.text_field :email %>
+    <%= label_tag "email", "Email" %>
+    <%= text_field_tag "email" %>
   </div>
-  <%= f.submit "Create Author" %>
+  <%= submit_tag "Create Author" %>
 <% end %>
