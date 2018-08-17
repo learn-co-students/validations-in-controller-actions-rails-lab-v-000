@@ -4,6 +4,17 @@ class PostsController < ApplicationController
   def show
   end
 
+  def create
+    @post = Post.new(post_params)
+    
+    if @post.valid?
+      @post.save
+      redirect_to author_path(@author)
+    else 
+      render :new 
+    end
+  end
+
   def edit
   end
 
