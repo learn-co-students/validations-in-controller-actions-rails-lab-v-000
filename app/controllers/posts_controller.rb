@@ -8,6 +8,7 @@ class PostsController < ApplicationController
   end
 
   def update
+# re-renders form if the updated post is invalid
     if @post.update(post_params)
       redirect_to post_path(@post)
     else
