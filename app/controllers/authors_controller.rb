@@ -8,7 +8,7 @@ class AuthorsController < ApplicationController
 
   def create
     @author = Author.create(author_params)
-        if @author.valid?  #true
+        if @author.valid?  #true If not valid, send the person back to the new method/page
           @author.save
          redirect_to author_path(@author)
         else
