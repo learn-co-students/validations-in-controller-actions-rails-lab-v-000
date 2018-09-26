@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post!, only: [:show, :edit, :update]
 
+ 
   def show
   end
 
@@ -8,9 +9,12 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post.update(post_params)
-
-    redirect_to post_path(@post)
+      @post.update(post_params)
+      if @post.valid?
+      redirect_to post_path(@post.id)
+    else
+      render :edit
+    end
   end
 
   private
