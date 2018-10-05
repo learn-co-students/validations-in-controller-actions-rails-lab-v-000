@@ -8,9 +8,13 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post.update(post_params)
+    if !post_params[:category].blank? && !post_params[:content].blank? && !post_params[:title].blank?
+      @post.update(post_params)
+      redirect_to post_path(@post)
 
-    redirect_to post_path(@post)
+    else
+    render :edit
+   end
   end
 
   private
