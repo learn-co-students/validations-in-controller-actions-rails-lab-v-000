@@ -8,16 +8,10 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post = Post.new(post_params)
-    
-    if @post.valid?
-      
-      @post.save
-      
-    redirect_to author_path(@post)
-    
+    if @post.update(post_params)
+      redirect_to post_path(@post)
     else
-      render :new 
+      render :edit
     end
   end
 
