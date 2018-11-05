@@ -1,3 +1,5 @@
+require 'pry'
+
 class PostsController < ApplicationController
   before_action :set_post!, only: [:show, :edit, :update]
 
@@ -8,9 +10,13 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post.update(post_params)
-
-    redirect_to post_path(@post)
+    @post = set_post!
+    @post.update(post_params) #do here because @post.valid? is only going to return false in cases of no name if post is equal to a validation-if just use @post = set_post! for if else like were before then there are times when it'll be true when it shouldn't be
+    if @post.valid?
+      redirect_to post_path(@post)
+    else
+      render :edit
+    end
   end
 
   private
