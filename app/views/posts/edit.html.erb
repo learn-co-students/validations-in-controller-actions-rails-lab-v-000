@@ -12,6 +12,9 @@
       Please type carefully as our top scientists are working around the clock to
       enable state-of-the-art dropdown technology for this form field.
     </p>
+    <% if @post.errors.any? %>
+  <div id="show_errors">
+    <h2><%= pluralize(@post.errors.count, "error") %> stopped this post from being saved:</h2>
   </div>
   <div class="field">
     <%= label_tag "content", "Content" %>
