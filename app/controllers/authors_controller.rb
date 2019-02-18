@@ -1,3 +1,4 @@
+require 'pry'
 class AuthorsController < ApplicationController
   def show
     @author = Author.find(params[:id])
@@ -7,9 +8,17 @@ class AuthorsController < ApplicationController
   end
 
   def create
-    @author = Author.create!(author_params)
+    @author = Author.new(author_params)
 
-    redirect_to author_path(@author)
+    if @author.valid?
+     # If--and only if--the post is valid, do what we usually do.
+     @author.save
+     redirect_to author_path(@author)
+   else
+     render :new
+   end
+
+
   end
 
   private
