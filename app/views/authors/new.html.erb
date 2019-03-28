@@ -1,3 +1,10 @@
+<% if @author.errors.any? %>
+  <div>
+    <% @post.errors.full_messages.each do |error_message| %>
+      <p><%= error_message %></p>
+    <% end %>
+  </div>
+<% end %>
 <h2>Create an Author</h2>
 <%= form_tag authors_path, method: "post" do %>
   <div class="field">
