@@ -2,15 +2,44 @@ class PostsController < ApplicationController
   before_action :set_post!, only: [:show, :edit, :update]
 
   def show
+    @post = Post.find(params[:id])
+  end
+
+  def new
+  end
+
+
+# create method added, not in the original lab controller provided
+  # def create
+  #   @post = Post.new(post_params)
+  #
+  #   if @post.valid?
+  #     @post.save
+  #
+  #     redirect_to post_path(@post)
+  #   else
+  #     render :new
+  #   end
+  # end
+
+  def create
+    @post = Post.create(post_params)
+
+    redirect_to post_path(@post)
   end
 
   def edit
+    @post = Post.find(params[:id])
   end
 
   def update
-    @post.update(post_params)
+    @post = Post.find(params[:id])
 
-    redirect_to post_path(@post)
+    if @post.update(post_params)
+      redirect_to post_path(@post)
+    else
+      render :edit
+    end
   end
 
   private
