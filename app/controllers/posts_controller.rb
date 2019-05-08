@@ -8,9 +8,13 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post.update(post_params)
-
-    redirect_to post_path(@post)
+      if @post.update(post_params)
+      
+      redirect_to post_path(@post)
+    else
+      render :edit
+    end
+    # Change PostsController#update to re-render the form if the updated post is invalid.
   end
 
   private
