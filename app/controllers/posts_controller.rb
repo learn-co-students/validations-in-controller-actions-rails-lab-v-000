@@ -8,10 +8,23 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post.update(post_params)
-
-    redirect_to post_path(@post)
+    @post1 = Post.new(post_params)
+    if @post1.valid?
+      @post.update(post_params)
+      redirect_to post_path(@post)
+    else render :edit
+    end
   end
+
+  # better code from solution, retrieved after tests passing for future reference
+  # just use inherent validation in update to check for validity
+  # def update
+  #   if @post.update(post_params)
+  #     redirect_to post_path(@post)
+  #   else
+  #     render :edit
+  #   end
+  # end
 
   private
 
