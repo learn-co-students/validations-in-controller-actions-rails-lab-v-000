@@ -1,6 +1,23 @@
 class PostsController < ApplicationController
   before_action :set_post!, only: [:show, :edit, :update]
 
+  def new
+    @post = Post.new
+  end
+
+  def create
+    @post = Post.new(post_params)
+    if @post.valid?
+      @post.save
+      redirect_to post_path(@post)
+    elsif
+      @post.title == nil
+      post.errors(:title) << "Your title can't be blank."
+    else
+      render :new
+    end 
+  end
+
   def show
   end
 
