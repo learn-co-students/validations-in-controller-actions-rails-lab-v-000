@@ -8,9 +8,16 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post.update(post_params)
-
-    redirect_to post_path(@post)
+    set_post!
+    params.each do |key, value|
+      @post.send("#{key}=", value) if @post.has_attribute?(key)
+    end
+    if @post.valid?
+      @post.save
+      redirect_to post_path(@post)
+    else
+      render :edit
+    end
   end
 
   private
