@@ -13,9 +13,12 @@ class PostsController < ApplicationController
     elsif
       @post.title == nil
       post.errors(:title) << "Your title can't be blank."
+    elsif
+      @post.content.length < 100
+      post.errors(:content) << "Your content must be at least 100 characters long."
     else
       render :new
-    end 
+    end
   end
 
   def show
@@ -25,10 +28,22 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post.update(post_params)
-
-    redirect_to post_path(@post)
-  end
+    if @post.valid?
+      @post.update(post_params)
+      redirect_to post_path(@post)
+    elsif
+      @post.title == nil
+      post.errors(:title) << "Your title can't be blank."
+    elsif
+      @post.content.length < 100
+      post.errors(:content) << "Your content must be at least 100 characters long."
+    elsif
+      @post.category != "Fiction" || @post.category != "Non-Fiction"
+      post.errors(:category) << "Choose from either 'Fiction' or 'Non-Fiction' for the category."
+    else
+    render :edit
+    end
+  end 
 
   private
 
