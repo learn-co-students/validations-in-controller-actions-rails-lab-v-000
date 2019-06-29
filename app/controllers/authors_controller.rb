@@ -1,3 +1,4 @@
+require 'pry'
 class AuthorsController < ApplicationController
   def show
     @author = Author.find(params[:id])
@@ -7,9 +8,25 @@ class AuthorsController < ApplicationController
   end
 
   def create
-    @author = Author.create!(author_params)
+    # Create a brand new, unsaved, not-yet-validated Author object from the form.
+    #@author = Author.create!(author_params) changed to 
+    @author = Author.new(author_params) #because create presaves
 
-    redirect_to author_path(@author)
+     # Run the validations WITHOUT attempting to save to the database, returning
+    # true if the Author is valid, and false if it's not.
+    if @author.valid?
+       # If--and only if--the post is valid, do what we usually do.
+      @author.save
+      # This returns a status_code of 302, which instructs the browser to
+      # perform a NEW REQUEST! (AKA: throw @author away and let the show action
+      # worry about re-reading it from the database)
+      redirect_to author_path(@author)
+    else
+      # If the author is invalid, hold on to @author, because it is now full of
+      # useful error messages, and re-render the :new page, which knows how
+      # to display them alongside the user's entries.
+      render :new
+    end
   end
 
   private
