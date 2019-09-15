@@ -8,9 +8,13 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post.update(post_params)
+          @post = Post.find_by(id: params[:id])
 
-    redirect_to post_path(@post)
+          if @post.update(post_params) #if this statement is valid then it would work, if not it will yield fasle if validations dont go thorugh
+              redirect_to post_path(@post)
+          else
+              render :edit
+          end
   end
 
   private
