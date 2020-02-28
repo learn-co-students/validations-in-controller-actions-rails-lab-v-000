@@ -1,4 +1,9 @@
 class AuthorsController < ApplicationController
+
+  def index
+    @authors = Author.all
+  end
+
   def show
     @author = Author.find(params[:id])
   end
@@ -6,10 +11,23 @@ class AuthorsController < ApplicationController
   def new
   end
 
-  def create
-    @author = Author.create!(author_params)
+  # def create
+  #   @author = Author.create!(author_params)
+  #   if !!@author
+  #     redirect_to author_path(@author)
+  #   else
+  #     handle the errors and return user to new form
+  #     render :new
+  #   end
+  # end
 
-    redirect_to author_path(@author)
+  def create
+    @author = Author.new(author_params)
+    if @author.save
+      redirect_to author_path(@author)
+    else
+      render :new
+    end
   end
 
   private
