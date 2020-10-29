@@ -1,4 +1,6 @@
 class AuthorsController < ApplicationController
+  
+
   def show
     @author = Author.find(params[:id])
   end
@@ -7,7 +9,7 @@ class AuthorsController < ApplicationController
   end
 
   def create
-    @author = Author.create!(author_params)
+    @author = Author.new(author_params)
 
     if @author.valid?
       @author.save
