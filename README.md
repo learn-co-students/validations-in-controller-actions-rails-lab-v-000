@@ -1,5 +1,4 @@
 # Validations In Controller Actions Lab
-
 Time to apply these new tools!
 
 The goal of this lab is to allow users of this blog-style application to create and edit authors and posts without worrying about typos or other mistakes leading to error-prone form submissions.
